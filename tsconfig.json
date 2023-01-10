@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2018",
+    "lib": [
+      "ES2018"
+    ],
+    "module": "CommonJS",
+    "rootDir": "src",
+    "baseUrl": "src",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "outDir": "./build",
+    "removeComments": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@/*": [
+        "*"
+      ]
+    }
+  },
+  "include": [
+    "src"
+  ]
+}
