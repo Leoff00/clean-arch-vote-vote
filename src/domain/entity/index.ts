@@ -1,1 +1,1 @@
-export * from "./votation-entity";
+export * from "./vote-entity";
