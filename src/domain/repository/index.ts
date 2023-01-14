@@ -1,2 +1,2 @@
 export * from "./user-repository";
-export * from "./votation-repository";
+export * from "./vote-repository";
