@@ -13,8 +13,4 @@ export class VoteEntity {
   hasReachedMaxVotation(): boolean {
     return this.singleVote === this.MAX_TIMES_VOTE;
   }
-
-  canVote(): boolean {
-    return this.singleVote === 0;
-  }
 }
