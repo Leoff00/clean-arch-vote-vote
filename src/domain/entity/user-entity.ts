@@ -1,9 +1,7 @@
-type User = {
-  username: string;
-  age: string;
-  id: string;
-};
-
 export class UserEntity {
-  constructor(private readonly user: User) {}
+  constructor(
+    private readonly username: string,
+    private readonly age: string,
+    private readonly id: string
+  ) {}
 }
