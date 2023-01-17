@@ -1,6 +1,6 @@
 import { UserRepisotory } from "@/domain/repository";
 
-export class GetVotes {
+export class GetUsersUseCase {
   constructor(private readonly userRepository: UserRepisotory) {}
 
   async execute() {

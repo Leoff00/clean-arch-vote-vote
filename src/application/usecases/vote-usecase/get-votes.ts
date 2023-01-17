@@ -1,6 +1,6 @@
 import { VoteRepository } from "@/domain/repository";
 
-export class GetVotes {
+export class GetVotesUseCase {
   constructor(private readonly votationRepository: VoteRepository) {}
 
   async execute() {
