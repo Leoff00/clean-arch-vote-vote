@@ -1,7 +1,7 @@
 import { UserDTO } from "@/application/DTOs/User.DTO";
 import { UserRepisotory } from "@/domain/repository";
 
-export class CreateUser {
+export class CreateUserUseCase {
   constructor(private readonly user: UserRepisotory) {}
 
   async execute(input: UserDTO): Promise<void> {
