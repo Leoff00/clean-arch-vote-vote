@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "vitest src/tests/",
+    "test": "vitest .",
     "prepare": "husky install"
   },
   "repository": {
