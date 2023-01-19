@@ -24,7 +24,7 @@ describe("Vote Entity Business Rules", () => {
     expect(vote.hasReachedMaxVotation()).toBe(true);
   });
 
-  it("Should check if vote has reached max limit", () => {
+  it("Should check if vote throws an exception", () => {
     const mock = {
       id: randomUUID(),
       singleVote: 11,
@@ -32,7 +32,7 @@ describe("Vote Entity Business Rules", () => {
 
     const vote = new VoteEntity(mock.id, mock.singleVote);
 
-    expect(vote.hasExceededMaxTimesVote()).toThrowError(
+    expect(() => vote.hasExceededMaxTimesVote()).toThrowError(
       "Você ultrapassou o limite de votação!"
     );
   });

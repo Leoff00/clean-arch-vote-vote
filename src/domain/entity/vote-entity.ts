@@ -16,12 +16,9 @@ export class VoteEntity {
     return this.singleVote > 0 && this.singleVote <= this.MAX_TIMES_VOTE;
   }
 
-  hasExceededMaxTimesVote(): void {
+  hasExceededMaxTimesVote() {
     if (this.singleVote > this.MAX_TIMES_VOTE) {
-      throw (
-        (new Error("Você ultrapassou o limite de votação!"),
-        (this.singleVote = 10))
-      );
+      throw new Error("Você ultrapassou o limite de votação!");
     }
   }
 
