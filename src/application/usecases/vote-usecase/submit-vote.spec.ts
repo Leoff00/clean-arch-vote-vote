@@ -4,13 +4,13 @@ import { describe, expect, test } from "vitest";
 import { SubmitVoteUseCase } from "./submit-vote";
 
 describe("Submit vote use case", () => {
-    test("Should test vote submitted", async () => {
-        const voteRepository = new VoteInMemoryRepository()
-        const submitVoteUseCase = new SubmitVoteUseCase(voteRepository)
-        const { id, singleVote } = voteMocksFactory()
+  test("Should test vote submitted", async () => {
+    const voteRepository = new VoteInMemoryRepository();
+    const submitVoteUseCase = new SubmitVoteUseCase(voteRepository);
+    const { id, singleVote } = voteMocksFactory({});
 
-        await submitVoteUseCase.execute({ id, singleVote })
+    await submitVoteUseCase.execute({ id, singleVote });
 
-        expect(voteRepository.votes).toHaveLength(1)
-    })
-})
+    expect(voteRepository.votes).toHaveLength(1);
+  });
+});

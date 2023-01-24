@@ -1,12 +1,17 @@
 import { randomUUID } from "node:crypto";
 import { VoteDTO } from "@/application/DTOs";
 
-export const voteMocksFactory = (
-    id: string = randomUUID(),
-    singleVote: number = 1
-): VoteDTO => {
-    return {
-        id,
-        singleVote,
-    };
+type voteMockFactoryProps = {
+  id?: string;
+  singleVote?: number;
+};
+
+export const voteMocksFactory = ({
+  id = randomUUID(),
+  singleVote = 1,
+}: voteMockFactoryProps): VoteDTO => {
+  return {
+    id,
+    singleVote,
+  };
 };

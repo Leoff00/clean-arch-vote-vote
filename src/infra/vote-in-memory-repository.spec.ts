@@ -5,7 +5,7 @@ import { VoteInMemoryRepository } from "./vote-in-memory-repository";
 
 describe("Vote In Memory Repository", () => {
   it("Submit new vote in memory Repository", async () => {
-    const { id, singleVote } = voteMocksFactory();
+    const { id, singleVote } = voteMocksFactory({});
     const voteInMemoryRepository = new VoteInMemoryRepository();
     const vote = new VoteEntity(id, singleVote);
 
