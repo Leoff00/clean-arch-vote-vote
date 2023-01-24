@@ -12,7 +12,7 @@ describe("Vote Entity Business Rules", () => {
   });
 
   it("Should check if vote has reached max limit", () => {
-    const { id, singleVote } = voteMocksFactory({});
+    const { id, singleVote } = voteMocksFactory({ singleVote: 10 });
     const vote = new VoteEntity(id, singleVote);
 
     expect(vote.hasReachedMaxVotation()).toBe(true);
