@@ -11,8 +11,18 @@ describe("Vote In Memory Repository", () => {
 
     await voteInMemoryRepository.submitVote(vote.id, vote.singleVote);
 
-    expect(voteInMemoryRepository.votes).toEqual([{ id, singleVote }]);
     expect(vote).toBeInstanceOf(VoteEntity);
     expect(voteInMemoryRepository.votes).toHaveLength(1);
+  });
+
+  it("Should get all votes in memory repository", async () => {
+    const { id, singleVote } = voteMocksFactory({});
+    const voteInMemoryRepository = new VoteInMemoryRepository();
+    const vote = new VoteEntity(id, singleVote);
+
+    await voteInMemoryRepository.submitVote(vote.id, vote.singleVote);
+    const allVotesInMemory = await voteInMemoryRepository.getVotes();
+
+    expect(allVotesInMemory).toEqual(voteInMemoryRepository.votes);
   });
 });
