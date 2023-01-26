@@ -1,3 +1,4 @@
+import { VoteEntity } from "@/domain/entity";
 import { VoteRepository } from "@/domain/repository/vote-repository";
 
 export class VoteInMemoryRepository implements VoteRepository {
@@ -7,8 +8,8 @@ export class VoteInMemoryRepository implements VoteRepository {
     return this.repoVote;
   }
 
-  async submitVote(id: string, singleVote: number) {
-    await this.votes.push({ id, singleVote })
+  async submitVote(vote: VoteEntity) {
+    await this.votes.push(vote);
   }
 
   async getVotes() {
