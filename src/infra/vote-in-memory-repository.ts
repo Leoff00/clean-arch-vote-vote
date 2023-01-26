@@ -8,11 +8,11 @@ export class VoteInMemoryRepository implements VoteRepository {
     return this.repoVote;
   }
 
-  async submitVote(vote: VoteEntity) {
+  async submitVote(vote: VoteEntity): Promise<void> {
     await this.votes.push(vote);
   }
 
-  async getVotes() {
+  async getVotes(): Promise<Array<VoteEntity>> {
     const allVotes = await this.votes;
     return allVotes;
   }
