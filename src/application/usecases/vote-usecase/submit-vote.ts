@@ -1,11 +1,11 @@
 import { VoteRepository } from "@/domain/repository";
-import { VoteDTO } from "@/application/DTOs";
 import { VoteEntity } from "@/domain/entity";
+import { VoteInput } from "@/application/usecases/inputs";
 
 export class SubmitVoteUseCase {
   constructor(private readonly votationRepository: VoteRepository) {}
 
-  async execute(input: VoteDTO) {
+  async execute(input: VoteInput) {
     const vote = new VoteEntity(input.id, input.singleVote);
     await this.votationRepository.submitVote(vote);
   }
