@@ -9,7 +9,7 @@ describe("Vote In Memory Repository", () => {
     const voteInMemoryRepository = new VoteInMemoryRepository();
     const vote = new VoteEntity(id, singleVote);
 
-    await voteInMemoryRepository.submitVote(vote.id, vote.singleVote);
+    await voteInMemoryRepository.submitVote(vote);
 
     expect(vote).toBeInstanceOf(VoteEntity);
     expect(voteInMemoryRepository.votes).toHaveLength(1);
@@ -20,7 +20,7 @@ describe("Vote In Memory Repository", () => {
     const voteInMemoryRepository = new VoteInMemoryRepository();
     const vote = new VoteEntity(id, singleVote);
 
-    await voteInMemoryRepository.submitVote(vote.id, vote.singleVote);
+    await voteInMemoryRepository.submitVote(vote);
     const allVotesInMemory = await voteInMemoryRepository.getVotes();
 
     expect(allVotesInMemory).toEqual(voteInMemoryRepository.votes);

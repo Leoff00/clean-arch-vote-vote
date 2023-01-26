@@ -2,7 +2,7 @@ import { VoteEntity } from "@/domain/entity";
 import { VoteRepository } from "@/domain/repository/vote-repository";
 
 export class VoteInMemoryRepository implements VoteRepository {
-  private repoVote = [];
+  private repoVote: VoteEntity[] = [];
 
   get votes() {
     return this.repoVote;
