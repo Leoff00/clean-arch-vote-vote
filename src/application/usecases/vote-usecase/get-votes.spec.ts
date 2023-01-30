@@ -6,7 +6,7 @@ import { GetVotesUseCase } from "./get-votes";
 import { VoteInput } from "@/application/usecases/inputs";
 
 describe("Get votes list use case", () => {
-  test("Should got at least one or more votes saved", async () => {
+  test("Should get at least one or more votes saved", async () => {
     const voteRepository = new VoteInMemoryRepository();
     const getVotesUseCase = new GetVotesUseCase(voteRepository);
     const { id, singleVote } = voteMocksFactory({});
