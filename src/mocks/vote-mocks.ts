@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto";
-import { VoteDTO } from "@/application/DTOs";
+import { VoteInput } from "@/application/usecases/inputs";
 
 type voteMockFactoryProps = {
   id?: string;
@@ -9,7 +9,7 @@ type voteMockFactoryProps = {
 export const voteMocksFactory = ({
   id = randomUUID(),
   singleVote = 1,
-}: voteMockFactoryProps): VoteDTO => {
+}: voteMockFactoryProps): VoteInput => {
   return {
     id,
     singleVote,
