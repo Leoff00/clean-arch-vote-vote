@@ -25,4 +25,30 @@ describe("Vote In Memory Repository", () => {
 
     expect(allVotesInMemory).toEqual(voteInMemoryRepository.votes);
   });
+
+  it("Should update the vote until reaches 2 votes", async () => {
+    const { id, singleVote } = voteMocksFactory({});
+    const voteInMemoryRepository = new VoteInMemoryRepository();
+    const vote = new VoteEntity(id, singleVote);
+
+    await voteInMemoryRepository.submitVote(vote);
+    const { singleVote: renewSingleVote } = voteMocksFactory({ singleVote: 2 });
+    await voteInMemoryRepository.incrementVote(id, renewSingleVote);
+
+    expect(voteInMemoryRepository.votes[0].singleVote).toBe(2);
+  });
+
+  it("Should update the vote until reaches 10 votes", async () => {
+    const { id, singleVote } = voteMocksFactory({});
+    const voteInMemoryRepository = new VoteInMemoryRepository();
+    const vote = new VoteEntity(id, singleVote);
+
+    await voteInMemoryRepository.submitVote(vote);
+
+    for (let i = 0; i <= 10; i++) {
+      await voteInMemoryRepository.incrementVote(id, i);
+    }
+
+    expect(voteInMemoryRepository.votes[0].singleVote).toBe(vote.MaxTimesVote);
+  });
 });
