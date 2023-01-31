@@ -1,4 +1,4 @@
-import { VoteInMemoryRepository } from "@/infra/vote-in-memory-repository";
+import { VoteInMemoryRepository } from "@/infra/in-memory-vote-repository";
 import { voteMocksFactory } from "@/mocks/vote-mocks";
 import { describe, expect, test } from "vitest";
 import { SubmitVoteUseCase } from "./submit-vote";
