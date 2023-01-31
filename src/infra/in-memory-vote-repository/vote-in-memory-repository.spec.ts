@@ -33,7 +33,10 @@ describe("Vote In Memory Repository", () => {
 
     await voteInMemoryRepository.submitVote(vote);
     const { singleVote: renewSingleVote } = voteMocksFactory({ singleVote: 2 });
-    await voteInMemoryRepository.incrementVote(id, renewSingleVote);
+    await voteInMemoryRepository.incrementVote({
+      id,
+      singleVote: renewSingleVote,
+    });
 
     expect(voteInMemoryRepository.votes[0].singleVote).toBe(2);
   });
@@ -45,10 +48,25 @@ describe("Vote In Memory Repository", () => {
 
     await voteInMemoryRepository.submitVote(vote);
 
-    for (let i = 0; i <= 10; i++) {
-      await voteInMemoryRepository.incrementVote(id, i);
+    for (let i = 1; i <= vote.MaxTimesVote; i++) {
+      await Promise.allSettled([
+        voteInMemoryRepository.incrementVote({ id, singleVote: i }),
+      ]);
     }
 
     expect(voteInMemoryRepository.votes[0].singleVote).toBe(vote.MaxTimesVote);
+  });
+
+  it("Should throws an exception if input vote was higher than current vote", async () => {
+    const { id, singleVote } = voteMocksFactory({ singleVote: 5 });
+    const voteInMemoryRepository = new VoteInMemoryRepository();
+    const vote = new VoteEntity(id, singleVote);
+
+    await voteInMemoryRepository.submitVote(vote);
+
+    expect(async () => {
+      await voteInMemoryRepository.incrementVote({ id, singleVote });
+    }).rejects.toThrowError("Não pode enviar um voto maior que o atual.");
+    expect(voteInMemoryRepository.votes[0].singleVote).not.toBe(1);
   });
 });
