@@ -1,5 +1,6 @@
 import { VoteEntity } from "@/domain/entity";
 import { VoteRepository } from "@/domain/repository/vote-repository";
+import { UnprocessableEntity } from "@/infra/http/errors";
 
 type IncrementVoteProps = Pick<VoteEntity, "id" | "singleVote">;
 
@@ -31,7 +32,9 @@ export class VoteInMemoryRepository implements VoteRepository {
     if (currentVote.singleVote < singleVote) {
       currentVote.singleVote = singleVote;
     } else {
-      throw new Error("Não pode enviar um voto maior que o atual.");
+      throw new UnprocessableEntity(
+        "Não pode enviar um voto maior que o atual."
+      );
     }
   }
 }
