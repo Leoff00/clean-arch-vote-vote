@@ -6,8 +6,8 @@ export class IncrementVoteUseCase {
 
   async execute(input: VoteInput): Promise<void> {
     await this.votationRepository.incrementVote({
-      id: input.id,
       singleVote: input.singleVote,
+      id: input.id,
     });
   }
 }
