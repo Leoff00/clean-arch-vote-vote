@@ -19,14 +19,14 @@ export class VoteInMemoryRepository implements VoteRepository {
     return allVotes;
   }
 
-  private async findVoteById(id: string): Promise<VoteEntity> {
+  private async findVoteById(id?: string): Promise<VoteEntity> {
     const currentVote = await this.votes.find((vote) => {
       return vote.id === id;
     });
     return currentVote;
   }
 
-  async incrementVote({ id, singleVote }: IncrementVoteProps): Promise<void> {
+  async incrementVote({ singleVote, id }: IncrementVoteProps): Promise<void> {
     const currentVote = await this.findVoteById(id);
     if (currentVote.singleVote < singleVote) {
       currentVote.singleVote = singleVote;

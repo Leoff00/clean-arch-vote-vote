@@ -9,10 +9,10 @@ describe("Increment Vote Use Case", () => {
     const voteRepository = new VoteInMemoryRepository();
     const incrementVoteUseCase = new IncrementVoteUseCase(voteRepository);
     const { id, singleVote } = voteMocksFactory({});
-    const vote = new VoteEntity(id, singleVote);
+    const vote = new VoteEntity(singleVote, id);
 
     await voteRepository.submitVote(vote);
-    await incrementVoteUseCase.execute({ id, singleVote: 5 });
+    await incrementVoteUseCase.execute({ singleVote: 5, id });
 
     expect(vote.singleVote).toBe(5);
     expect(vote.singleVote).not.toBe(3);

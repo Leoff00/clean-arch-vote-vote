@@ -9,7 +9,7 @@ describe("Submit vote use case", () => {
     const submitVoteUseCase = new SubmitVoteUseCase(voteRepository);
     const { id, singleVote } = voteMocksFactory({});
 
-    await submitVoteUseCase.execute({ id, singleVote });
+    await submitVoteUseCase.execute({ singleVote, id });
 
     expect(voteRepository.votes).toHaveLength(1);
   });

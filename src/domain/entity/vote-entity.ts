@@ -1,11 +1,13 @@
+import crypto from "node:crypto";
+
 export class VoteEntity {
   private readonly MAX_TIMES_VOTE: number = 10;
   id: string;
   singleVote = 0;
 
-  constructor(id: string, singleVote: number) {
-    this.id = id;
+  constructor(singleVote: number, id?: string) {
     this.singleVote = singleVote;
+    this.id = id || crypto.randomUUID();
   }
 
   get MaxTimesVote() {

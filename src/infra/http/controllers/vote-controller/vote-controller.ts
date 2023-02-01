@@ -33,7 +33,6 @@ export class VoteController {
       voteInMemoryRepository
     );
 
-    console.log(voteDTO);
     await incrementVoteUseCase.execute({
       id: voteDTO.id,
       singleVote: voteDTO.singleVote,

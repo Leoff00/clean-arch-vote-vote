@@ -6,7 +6,7 @@ export class SubmitVoteUseCase {
   constructor(private readonly votationRepository: VoteRepository) {}
 
   async execute(input: VoteInput) {
-    const vote = new VoteEntity(input.id, input.singleVote);
+    const vote = new VoteEntity(input.singleVote, input.id);
     await this.votationRepository.submitVote(vote);
   }
 }

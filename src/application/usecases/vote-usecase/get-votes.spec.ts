@@ -10,7 +10,7 @@ describe("Get votes list use case", () => {
     const voteRepository = new VoteInMemoryRepository();
     const getVotesUseCase = new GetVotesUseCase(voteRepository);
     const { id, singleVote } = voteMocksFactory({});
-    const vote = new VoteEntity(id, singleVote);
+    const vote = new VoteEntity(singleVote, id);
 
     await voteRepository.submitVote(vote);
     const allVotes = await getVotesUseCase.execute();

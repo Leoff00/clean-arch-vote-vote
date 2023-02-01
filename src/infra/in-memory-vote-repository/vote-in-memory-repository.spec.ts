@@ -7,7 +7,7 @@ describe("Vote In Memory Repository", () => {
   it("Submit new vote in memory Repository", async () => {
     const { id, singleVote } = voteMocksFactory({});
     const voteInMemoryRepository = new VoteInMemoryRepository();
-    const vote = new VoteEntity(id, singleVote);
+    const vote = new VoteEntity(singleVote, id);
 
     await voteInMemoryRepository.submitVote(vote);
 
@@ -18,7 +18,7 @@ describe("Vote In Memory Repository", () => {
   it("Should get all votes in memory repository", async () => {
     const { id, singleVote } = voteMocksFactory({});
     const voteInMemoryRepository = new VoteInMemoryRepository();
-    const vote = new VoteEntity(id, singleVote);
+    const vote = new VoteEntity(singleVote, id);
 
     await voteInMemoryRepository.submitVote(vote);
     const allVotesInMemory = await voteInMemoryRepository.getVotes();
@@ -29,7 +29,7 @@ describe("Vote In Memory Repository", () => {
   it("Should update the vote until reaches 2 votes", async () => {
     const { id, singleVote } = voteMocksFactory({});
     const voteInMemoryRepository = new VoteInMemoryRepository();
-    const vote = new VoteEntity(id, singleVote);
+    const vote = new VoteEntity(singleVote, id);
 
     await voteInMemoryRepository.submitVote(vote);
     const { singleVote: renewSingleVote } = voteMocksFactory({ singleVote: 2 });
@@ -44,13 +44,13 @@ describe("Vote In Memory Repository", () => {
   it("Should update the vote until reaches 10 votes", async () => {
     const { id, singleVote } = voteMocksFactory({});
     const voteInMemoryRepository = new VoteInMemoryRepository();
-    const vote = new VoteEntity(id, singleVote);
+    const vote = new VoteEntity(singleVote, id);
 
     await voteInMemoryRepository.submitVote(vote);
 
     for (let i = 1; i <= vote.MaxTimesVote; i++) {
       await Promise.allSettled([
-        voteInMemoryRepository.incrementVote({ id, singleVote: i }),
+        voteInMemoryRepository.incrementVote({ singleVote: i, id }),
       ]);
     }
 
@@ -60,7 +60,7 @@ describe("Vote In Memory Repository", () => {
   it("Should throws an exception if input vote was higher than current vote", async () => {
     const { id, singleVote } = voteMocksFactory({ singleVote: 5 });
     const voteInMemoryRepository = new VoteInMemoryRepository();
-    const vote = new VoteEntity(id, singleVote);
+    const vote = new VoteEntity(singleVote, id);
 
     await voteInMemoryRepository.submitVote(vote);
 
