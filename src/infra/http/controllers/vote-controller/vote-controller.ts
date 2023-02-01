@@ -26,14 +26,15 @@ export class VoteController {
   }
 
   async incrementVoteHandler(request: Request, response: Response) {
-    const voteDTO = request.body as VoteDTO;
+    const { id } = request.params as Pick<VoteDTO, "id">;
+    const { singleVote } = request.body as Pick<VoteDTO, "singleVote">;
     const incrementVoteUseCase = new IncrementVoteUseCase(
       voteInMemoryRepository
     );
 
     await incrementVoteUseCase.execute({
-      id: voteDTO.id,
-      singleVote: voteDTO.singleVote,
+      id,
+      singleVote,
     });
 
     return response.status(204).json();
