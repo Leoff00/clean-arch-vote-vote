@@ -7,9 +7,10 @@ import { VoteDTO } from "@/infra/DTOs/vote-dto";
 import { VoteInMemoryRepository } from "@/infra/in-memory-vote-repository";
 import { Request, Response } from "express";
 
+const voteInMemoryRepository = new VoteInMemoryRepository();
+
 export class VoteController {
   async getVotesHandler(_: Request, response: Response) {
-    const voteInMemoryRepository = new VoteInMemoryRepository();
     const getVotesUseCase = new GetVotesUseCase(voteInMemoryRepository);
     const allVotes = await getVotesUseCase.execute();
 
@@ -18,9 +19,7 @@ export class VoteController {
 
   async submitVoteHandler(request: Request, response: Response) {
     const voteDTO = request.body as VoteDTO;
-    const voteInMemoryRepository = new VoteInMemoryRepository();
     const submitVoteUseCase = new SubmitVoteUseCase(voteInMemoryRepository);
-
     await submitVoteUseCase.execute(voteDTO);
 
     return response.status(201).json();
@@ -28,7 +27,6 @@ export class VoteController {
 
   async incrementVoteHandler(request: Request, response: Response) {
     const voteDTO = request.body as VoteDTO;
-    const voteInMemoryRepository = new VoteInMemoryRepository();
     const incrementVoteUseCase = new IncrementVoteUseCase(
       voteInMemoryRepository
     );
