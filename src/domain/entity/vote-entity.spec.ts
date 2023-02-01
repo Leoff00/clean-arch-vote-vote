@@ -10,6 +10,13 @@ describe("Vote Entity Business Rules", () => {
     expect(vote.hasVoted()).toBe(true);
   });
 
+  it("Should check if randomUUID has been called omiting param", () => {
+    const { singleVote } = voteMocksFactory({});
+    const vote = new VoteEntity(singleVote);
+
+    expect(vote.id).toHaveLength(36);
+  });
+
   it("Should check if vote has reached max limit", () => {
     const { id, singleVote } = voteMocksFactory({ singleVote: 10 });
     const vote = new VoteEntity(singleVote, id);
