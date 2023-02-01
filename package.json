@@ -7,6 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
+    "test:int": "vitest src/infra/http/controllers/vote-controller.spec.ts",
     "build": "tsc",
     "dev": "ts-node --transpile-only -r tsconfig-paths/register src/infra/http/express/index.ts",
     "test": "vitest .",
@@ -33,15 +34,17 @@
     "@commitlint/config-conventional": "^17.4.0",
     "@faker-js/faker": "^7.6.0",
     "@types/express": "^4.17.16",
+    "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.48.1",
     "@typescript-eslint/parser": "^5.48.1",
     "@vitest/coverage-c8": "^0.28.3",
     "eslint": "^8.31.0",
     "husky": "^8.0.0",
+    "supertest": "^6.3.3",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.1.2",
     "typescript": "^4.9.4",
-    "vite-tsconfig-paths": "^4.0.3",
+    "vite-tsconfig-paths": "^4.0.5",
     "vitest": "^0.27.1"
   },
   "dependencies": {
